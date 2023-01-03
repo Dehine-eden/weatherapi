@@ -14,6 +14,8 @@ https.get(url, function(response){
     response.on("data", function(data){
     const weatherData = JSON.parse(data);
     const weatherDescription = weatherData.weather[0].description;
+    const icon = weatherData.weather[0].icon;
+    const imageURL = "http://openweathermap.org/img/wn/" + icon + "@2x.png";
     const object = {
         name: "Dehine",
         food: "Firfir"
@@ -29,7 +31,8 @@ https.get(url, function(response){
 
         res.write("The temprature currently here is " + temp + "℃");
         res.write("The weather can be described as " + weatherDescription);
-        res.send()
+        res.write("<img src=" + imageURL + ">");
+        res.send("hey there");
     });
 
 });
